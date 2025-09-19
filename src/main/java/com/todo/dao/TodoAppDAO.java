@@ -113,5 +113,5 @@ public class TodoAppDAO {
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         }
-    }
+}
 }
