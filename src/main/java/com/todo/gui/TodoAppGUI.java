@@ -5,10 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import com.todo.dao.TodoAppDAO;
 import com.todo.model.Todo;
 
-import java.time.LocalDateTime;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -217,31 +214,7 @@ public class TodoAppGUI extends JFrame {
     }
     
     private void refreshTodo() {
-        int row = todoTable.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a row to refresh", "Validation Error", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        int id = (int) todoTable.getValueAt(row, 0);
-        try {
-            Todo todo = todoDAO.getTodoById(id);
-            if (todo != null) {
-                tableModel.setValueAt(todo.getTitle(), row, 1);
-                tableModel.setValueAt(todo.getDescription(), row, 2);
-                tableMo+del.setValueAt(todo.isCompleted(), row, 3);
-                tableModel.setValueAt(todo.getCreated_at(), row, 4);
-                tableModel.setValueAt(todo.getUpdated_at(), row, 5);
-                titleField.setText(todo.getTitle());
-                descriptionArea.setText(todo.getDescription());
-                completedCheckBox.setSelected(todo.isCompleted());
-
-                JOptionPane.showMessageDialog(this, "Todo refreshed successfully", "Refresh Success", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this, "Todo not found", "Refresh Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Refresh Error: " + e.getMessage(), "Refresh Error", JOptionPane.ERROR_MESSAGE);
-        }
+        loadTodos();
     }
 
     private void loadTodos(){

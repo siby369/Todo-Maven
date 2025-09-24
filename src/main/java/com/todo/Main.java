@@ -12,10 +12,10 @@ import com.todo.util.DatabaseConnection;
 
 public class Main {
     public static void main(String[] args) {
-        DatabaseConnection db_connection = new DatabaseConnection();
         try{
-            Connection cn = db_connection.getDBConnection();
+            Connection cn = DatabaseConnection.getDBConnection();
             System.out.println("Database connection has been established");
+            cn.close();
         }
         catch(SQLException e){
             System.out.println("Database connection has failed");

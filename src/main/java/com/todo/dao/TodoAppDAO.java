@@ -16,6 +16,7 @@ public class TodoAppDAO {
     private static final String SELECT_TODO_BY_ID = "SELECT * FROM todos WHERE id = ?";
     private static final String UPDATE_TODO = "UPDATE todos SET title = ?, description = ?, completed = ?, updated_at = ? WHERE id = ?";
     private static final String DELETE_TODO = "DELETE FROM todos WHERE id = ?";
+    private static final String REFRESH_TODO = "UPDATE todos SET updated_at = ? WHERE id = ?";
 
     public int createtodo(Todo todo) throws SQLException{
         try(
@@ -113,5 +114,5 @@ public class TodoAppDAO {
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         }
-}
+    }
 }
